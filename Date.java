@@ -42,10 +42,10 @@ public class Date{
 		}else if ((month == 1 || month == 3 || month == 5 || month == 7 || month == 9 || month == 11) && (day < 1 && day > 31)){
 			throw new IllegalArgumentException("this month has only 31 days!");
 		}
-		else if ((leap(year) == true)  && (month == 2) && (day<1 || day > 28)){
+		else if ((leap(year) == true)  && (month == 2) && (day < 1 && day > 28)){
 			throw new IllegalArgumentException("this is leap year. february has only 28 days!");
-		}else if ((leap(year) == false) && (month == 2) && (day < 1 || day > 29){
-			throw new IllegalArgumentException("this is leap year. february has only 29 days!");
+		}else if ((leap(year) == false) && (month == 2) && (day < 1 && day > 29){
+			throw new IllegalArgumentException("this is not leap year. february has only 29 days!");
 		}
 		System.out.println(day);
 	}
