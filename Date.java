@@ -75,7 +75,7 @@ public class Date{
 		if (this.day > 1 && day < 31){
 	    throw new IllegalArgumentException("error in setting");
 			
-		}else if (month == 2 || (month % 400 && month % 4 == 0 ))
+		}else if (month == 2 || (month % 400 == 0 && month % 4 == 0 ))
 		System.out.println(day);
 	}
 	public String toString(){
