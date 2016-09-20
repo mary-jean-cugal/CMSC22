@@ -33,6 +33,6 @@ public class Account{
 		}
 	}
 	public String toString(){
-		return String.format("A/C no: %d ,Balance: $ %.2f", accountNumber, balance);
+		return String.format("A/C no: %03.2f ,Balance: $ %03.2f", accountNumber, balance);
 	}
 }
