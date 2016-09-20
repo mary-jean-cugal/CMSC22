@@ -40,7 +40,7 @@ public class Date{
 			throw new IllegalArgumentException("this month has only 31 days!");
 		
 		}else if ((month == 1 || month == 3 || month == 5 || month == 7 || month == 9 || month == 11) && (day < 1 && day > 31)){
-			throw new IllegalArgumentException("this month has only 31 days!");
+			throw new IllegalArgumentException("this month has only 30 days!");
 		}
 		else if ((leap(year) == true)  && (month == 2) && (day < 1 && day > 28)){
 			throw new IllegalArgumentException("this is leap year. february has only 28 days!");
