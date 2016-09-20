@@ -22,17 +22,17 @@ public class Account{
 		this.balance = balance;
 	}
 	public void credit(double amount){
-		balance = balance + amount;
+		balance += amount;
 	}
 	public void debit(double amount){
 		if (balance >= amount){
-			balance = balance - amount;
+			balance-= amount;
 		}
 		else{
 			throw new IllegalArgumentException("amount withdrawn exceeds the current balance");
 		}
 	}
 	public String toString(){
-		return String.format("A/C no: %03.2f ,Balance: $ %03.2f", accountNumber, balance);
+		return String.format("A/C no: %03.2f ,Balance: $ %.2f", accountNumber, balance);
 	}
 }
