@@ -1,3 +1,6 @@
+/*
+ * Created by Desabille, Cugal and Arsolon
+ */
 public abstract class RPGCharacter {
 
     private String name;
