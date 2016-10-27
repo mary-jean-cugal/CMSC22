@@ -1,0 +1,154 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package lab11;
+
+import java.awt.Frame;
+import java.awt.*;
+import java.util.Random;
+import javafx.scene.control.CheckBox;
+import javax.swing.JFrame;
+import java.applet.Applet;
+import java.awt.Checkbox;
+import java.awt.CheckboxGroup;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
+/**
+ *
+ * @author Mary Jean Cugal
+ */
+
+public class Fight extends Frame{
+
+    /**
+     * @param args the command line arguments
+     */
+    public Fight(){
+        
+        setLayout(new FlowLayout());
+        label = new Label("Your Choice");
+        this.add(label);
+        cbg = new CheckboxGroup();
+        rock = new Checkbox("Rock", cbg, true);
+        paper = new Checkbox("Paper", cbg, true);
+        scissors = new Checkbox("Scissors", cbg, true);
+        lizard = new Checkbox("Lizard", cbg, true);
+        spock = new Checkbox("Spock", cbg, true);
+        
+        this.add(rock);
+        this.add(paper);
+        this.add(scissors);
+        this.add(lizard);
+        this.add(spock);
+        user = (cbg.getSelectedCheckbox()).getLabel();
+        tz = new TextArea("Result   " + "\n" + "The Computer Chose:  " + computer() + "\n" +"You Chose:   " +  user, 20, 30);
+        this.add(tz);
+        button = new Button("RockPaperScissorsLizardSpock");
+        this.add(button);
+        txt = new TextField("0" ,20);
+        scoreC = new Label();
+        scoreU = new Label();
+        scoreC.setText(Integer.toString(scoreComputer));
+        txt2 = new TextField("0", 30);
+
+        add(txt);
+        add(txt2);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (scoreUser != 6 && scoreComputer != 6){
+                    tz.append("\n" + "the Computer chose :  " + computer() + "\n");
+                    tz.append("\n The user chose: " + player() + "\n"); 
+                    if ((computer().equals("Rock") && (player().equals("Lizard") || player().equals("Scissors")))||
+                    (computer().equals("Paper") && (player().equals("Rock") || player().equals("Spock"))) ||
+                    (computer().equals("Scissors") && (player().equals("Paper") || player().equals("Lizard"))) ||
+                    (computer().equals("Lizard") && (player().equals("Spock") || player().equals("Paper"))) ||
+                    (computer().equals("Spock") && (player().equals("Scissors") || player().equals("Rock")))){
+                        scoreComputer++;
+                        System.out.println("computer: " + scoreComputer);
+                        txt2.setText(scoreComputer + "");
+                    }if ((player().equals("Rock") && (computer().equals("Lizard") || computer().equals("Scissors")))||
+                        (player().equals("Paper") && (computer().equals("Rock") || computer().equals("Spock"))) ||
+                        (player().equals("Scissors") && (computer().equals("Paper") || computer().equals("Lizard"))) ||
+                        (player().equals("Lizard") && (computer().equals("Spock") || computer().equals("Paper"))) ||
+                        (player().equals("Spock") && (computer().equals("Scissors") || computer().equals("Rock")))){
+                        scoreUser++;
+                        System.out.println("the user " + scoreUser);
+                        txt.setText(scoreUser + "");
+                    }
+                }if (scoreComputer == 5 || scoreUser == 5){
+                    String choice;
+                    exitbox = new CheckboxGroup();
+                    Checkbox shell;
+                    
+                    yes = new Checkbox("yes", exitbox, true);
+                    add(yes);
+                    no = new Checkbox("no", exitbox, true);
+                    add(no);
+                    shell = exitbox.getSelectedCheckbox();
+                    choice = shell.getLabel();
+                    if(choice.equals("yes")){
+                        scoreComputer = 0;
+                        scoreUser = 0;
+                    }
+                    else if(choice.equals("no")){
+                        System.exit(0);
+                    }
+            }
+            }
+        });
+        scoreC = new Label("Player's Score: ");
+        scoreU = new Label("\n Computer's Score: ");
+        this.add(scoreU); 
+        this.add(scoreC);
+        setSize(300, 500);
+        setVisible(true);
+       
+    }
+    TextField txt2;
+    TextField txt;
+    CheckboxGroup exitbox;
+    Checkbox yes;
+    Checkbox no;
+    Label label;
+    TextArea tz;
+    CheckboxGroup cbg;
+    Checkbox rock;
+    Checkbox paper;
+    Checkbox lizard;
+    Checkbox spock;
+    Checkbox scissors;
+    Checkbox chosen;
+    Button button;
+    Label scoreC;
+    Label scoreU;
+    TextField a;
+    String txtfield= "";
+    static int scoreComputer = 0;
+    static int scoreUser = 0;
+    String user;
+    String toStr;
+
+    private String player(){
+        chosen = cbg.getSelectedCheckbox();
+        return chosen.getLabel();
+    }
+    private String computer(){
+        Random ran = new Random();
+        int rand = ran.nextInt(4);
+        String[] hands = {"Rock", "Paper", "Scissors", "Lizard", "Spock"};
+        return hands[rand];
+    }
+    
+    public static void main(String[] args) {
+        new Fight();
+    }
+    
+}
